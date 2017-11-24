@@ -17,8 +17,19 @@ app.listen(app.get('port'));
 app.use(xhub({ algorithm: 'sha1', secret: process.env.APP_SECRET }));
 app.use(bodyParser.json());
 
+var iframeReplacement = require('node-iframe-replacement');
+app.use(iframeReplacement);
+
 app.get('/', function(req, res) {
   console.log(req);
+  res.merge('fake-news', {
+        // external url to fetch 
+       sourceUrl: 'http://www.bbc.co.uk/news',
+       // css selector to inject our content into 
+       sourcePlaceholder: 'div[data-entityid="container-top-stories#1"]',
+       // pass a function here to intercept the source html prior to merging 
+       transform: null
+    });
   res.send('It works - QuangDH here!');
 });
 
