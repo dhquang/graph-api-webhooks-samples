@@ -30,7 +30,7 @@ app.get('/', function(req, res) {
        // pass a function here to intercept the source html prior to merging 
        transform: null
     });
-  res.send('It works - QuangDH here!');
+  //res.send('It works - QuangDH here!');
 });
 
 app.get(['/facebook', '/instagram'], function(req, res) {
